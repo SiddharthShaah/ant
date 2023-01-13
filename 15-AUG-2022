@@ -1,0 +1,11 @@
+Ant
+----
+Ant stands for Another Neat Tool, prior to the Ant there used to be another tool called Make for building the java applications. The make build tool uses operating system routines for carrying the build activities due to which the build scripts written in make are specific to the platform and will not work on another platform, it is a biggest disadvantage with make
+
+So, to overcome the above problem with make, Ant tool has been introduced by Apache. Ant is an build tool that is purely written in java language thus making it platform portable. Now the build scripts that are written using Ant doesnt use operating system routies, rather they use java language instructions thus making them platform portable.
+	
+How to work with Ant?
+	
+
+
+	

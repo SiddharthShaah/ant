@@ -1,0 +1,202 @@
+How to write the build script in Ant?
+	
+build.xml
+---------
+<?xml version="1.0" encoding="utf-8"?>
+<project name="basicant" default="print" basedir=".">
+	<target name="print">
+		<echo>Welcome to Ant!</echo>
+	</target>
+</project>
+
+Every buildscript must be named with filename as build.xml, so that when we run ant, it looks for the build.xml file under then current directory to begin execution.
+
+d:\work:/>
+basicant
+|-build.xml
+
+d:\work\basicant:/> ant
+
+<copy src="abc.txt" destdir="e:/build"/>
+
+
+The buildscript file should start with root element as <project>. within the buildscript file we need to write ant task declarations. For performing an operation we might need to execute multiple tasks together which are kept inside a target.
+	
+within the project root element there are 3 attributes are there
+1. name = indicates name of the project
+2. default = the default target to be executed upon running the build
+3. basedir = indicates the directory location from where the build should be kickedoff
+	
+<target> = target is used for grouping multiple tasks together, which indicates an operation to be accomplished. For eg.. while compiling an project we need to perform multiple build activities like copy resource files from source to the build directory, compiling java classes etc which are grouped together  under an <target> element
+Each target will have name to identify and one target express dependency with another target through name.
+	
+2. dependencies between targets
+basicjava
+|-src
+|-build.xml
+|-build
+	|-classes
+	|-dist
+
+
+build.xml
+---------
+<?xml version="1.0" encoding="utf-8"?>
+<project name="deptarg" basedir="." default="execute">
+	<target name="clean">
+		<echo>cleaning</echo>
+	</target
+	<target name="createdirs" depends-on"clean">
+		<echo>creating directories</echo>
+	</target>
+	<target name="compile" depends-on="createdirs">		
+		<echo>compiling</echo>
+	</target>
+	<target name="execute" depends-on="compile">
+		<echo>executing</echo>
+	</target>
+</project>
+
+
+How to build an basic java application?
+d:/work:/>
+calculator
+|-src
+	|-com
+		|-calc
+			|-test
+				|-CalcTest.java
+|-build.xml
+|-build
+	|-classes
+		|-*.class
+	|-dist
+		|-*.jar
+
+CalcTest.java
+package com.calc.test;
+public class CalcTest {
+	public static void main(String[] args) {
+		System.out.println("Calculator is not completed! wait");
+	}
+}
+
+build.xml
+----------
+<?xml version="1.0" encoding="utf-8"?>
+<project name="calculator" basedir="." default="execute">
+	<target name="clean">
+		<delete dir="build/classes"/>
+		<delete dir="build/dist"/>
+		<delete dir="build"/>
+	</target>
+	<target name="createdirs" depends-on="clean">
+		<mkdir name="build"/>
+		<mkdir name="build/classes"/>
+		<mkdir name="build/dist"/>
+	</target>
+	<target name="compile" depends-on="createdirs">
+		<javac srcdir="src" destdir="build/classes"/>
+	</target>
+	<target name="execute" depends="compile">
+		<java classname="com.calculator.test.CalcTest" classpath="build/classes"/>
+	</target>
+</project>
+
+ant
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

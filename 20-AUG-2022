@@ -1,0 +1,166 @@
+DataType
+DataTypes doesnt refers to programming language dataTypes, in ANT these are built in constructs we pass them as an input to the ANT task. There are 4 different data types are there in ANT
+
+1. FileSet
+2. PatternSet
+3. FileList
+4. FilterSet
+
+1. FileSet
+FileSet represents a collection of files to be used based on a filter condition like either includes or excludes using which we can perform the operation
+
+billingsystem
+|-static
+	|-logo.png
+	|-banner.jpeg
+	|-sidenav.jpeg
+	|-login.png
+	|-themes
+		|-blue.png
+	|-style.css
+	|-site.js
+|-target
+	|-images
+	
+<target name="createdirs">
+	<mkdir dir="target/images"/>
+</target>
+<target name="copyImages">
+	<copy file="static/logo.png" todir="target/images"/>
+	<copy file="static/banner.jpeg" todir="target/images"/>
+	<copy file="static/login.png" todir="target/images"/>
+	<copy file="static/sidenav.jpeg" todir="target/images"/>
+</target>
+
+<target name="copyImages">
+	<copy todir="target/images">
+		<fileset srcdir="static">
+			<include name="**/*.jpeg"/>
+			<include name="**/*.png"/>
+		</fileset>
+	</copy>
+</target>
+FileSet represents set of files along with their path based on include / exclude pattern.
+	include indicates the matching pattern based on which the files has to included into the list
+	exclude pattern refers to the files should not be included in the list
+here we can specify 3 symbols in matching the file names
+1. ? = matches one character only
+2. * = matches zero or many characters
+3. ** = matches zero or any characters including the sub directories as well
+
+2. PatternSet
+PatternSet is used for creating reusable patterns that can be reused across many places within our build file
+
+hms
+|-resources
+	|-1.jpg
+	|-2.jpg
+	|-header.png
+	|-logo.png
+	|-fav.ico
+|-target
+	|-images
+	
+<patternset id="imagematchingpatterns">
+	<include name="**/*.png"/>
+	<include name="**/*.jpg"/>
+	<include name="**/*.ico"/>
+</patternset>
+	
+<target name="clean">
+	<delete dir="target/images">
+		<fileset dir="target/images">
+			<patternset refid="imagematchingpatterns"/>
+		</fileset>
+	</delete>
+</target>
+<target name="copyImages">
+	<copy todir="target/images">
+		<fileset dir="resources">
+			<patternset refid="imagematchingpatterns"/>
+		</fileset>
+	</copy>
+</target>
+
+3. FileList
+FileList is used for creating a fixed list of files explicitly based on filenames specified. it doesnt support wildcard characters in creating the list of files
+
+project1
+|-src
+	|-db.properties
+	|-application.xml
+	|-test.properties
+	|-results.xml
+|-target
+
+<target name="copy">
+	<copy todir="target">
+		<filelist dir="src">
+			<file name="db.properties"/>
+			<file name="application.xml"/>
+		</filelist>
+	</copy>
+</target>
+
+4. FilterSet
+
+stockmgmg
+|-src
+	|-*.java
+	|-db.properties
+|-build
+	|-classes
+	
+	|-dist
+|-build.properties
+
+
+build.properties
+-------------------
+dbDriverClassname=
+dbuser=
+dbpassword=
+dburl=
+
+stockmgmt:/> ant
+
+	
+db.properties
+--------------
+db.driverClassname=com.mysql.cj.jdbc.Driver
+db.url=jdbc:mysql://localhost:3306/stockdb
+db.username=root
+db.password=root
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

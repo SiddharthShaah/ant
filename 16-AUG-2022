@@ -1,0 +1,121 @@
+How to install Ant?
+Ant is a binary distribution and requires java to be installed on the machine to use it. The current version of ant is 1.10.12 and minimum jdk 8 is required to be installed
+
+1. download ANT binrary distribution
+https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.12-bin.zip
+2. extract the zip file, it will be extracted into a directory apache-ant-1.10.12
+3. copy the above directory into c:\ directly
+4. configure environment variables in advanced system variables (under System Variables)
+	ANT_HOME=c:\apache-ant-1.10.12
+	PATH=%PATH%;%ANT_HOME%\bin
+------------------------------------------------------------------------------------------------------------------------
+How to write the build script in ANT?
+We need to write build script file describing the activities we wanted to apply for our project in building the project. Ant by default looks for the buildscript file in out project with name "build.xml", and it should be placed directly under root directory of the project
+
+basicant
+|-src
+|-bin
+|-build.xml
+
+For each build activity to be conducted ant has provided predefined task. each task has been associated with an tag that should be written inside the build.xml. bunch of tasks that should be applied together are grouped under one <target/>
+
+Every target tag has an name attribute to identify the type of operation we are performing and the targets are given names to express dependencies between them
+
+
+build.xml
+---------
+<?xml version="1.0" encoding="utf-8"?>
+<project name="basicant">
+	<target name="print">
+		<echo>good evening! ant developers</echo>
+	</target>
+</project>
+
+<echo> = is an predefined task provided by ant
+How to run the ant build script?
+goto the root directory of the project and type the below command
+ant print
+d:\work:/>
+|-antbasic
+
+ant target
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

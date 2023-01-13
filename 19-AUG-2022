@@ -1,0 +1,254 @@
+How many types of variables are supported by ANT?
+There are 4 types of variables are there
+1. ant pre-defined/built-in variables
+2. system properties
+3. environment variables
+4. user-defined variables
+
+1. ant pre-defined variables
+	1.1 ant.home
+	1.2 ant.java.version
+	1.3 ant.project.name
+	1.4 ant.project.default-target
+	1.5 ant.core.lib
+	1.6 ant.library.dir
+	1.7 basedir
+	1.8 ant.version
+
+2. system properties = these are the jvm-level variables through which we can access the environment information of the machine on which we are performing the build
+
+3. environment variables = These are the variables created by the user at the operating system level and is accessible to all the programs globally within the machine
+to access environment variables we need to define prefix representing the environment of the machine
+<property environment="env"/>
+access variables = ${env.JAVA_HOME}
+
+4. user defined variables = the ant build script developer can define his own variables to be used aspart of the script using property tag
+<property name="variableName" value="variableValue"/>
+------------------------------------------------------------------------------------------------------------------------
+Using properties
+--------------------
+For different environments, the configurations or build parameters with which we need to perform the build of the project will be different. Each time instead of modifying the build script file variable values pertaining to env, which is error prone, we can externalize the variables and the values of the env into a properties file
+
+For each env we can define one properties file representing the env values and we can run the build process by passing the env specific properties as input to the build script. The default file is "build.properties", if it is placed within the buildscript location automatically it is passed as an input during build execution
+
+build.properties
+build.version=2022.08.19.01
+project.name=fithealth2
+author.name=Joseph
+project.deployer=Jerry
+
+build-qa.properties
+build.version=2022.08.29.01
+project.name=fithealth2
+author.name=Joseph
+project.deployer=Jane
+
+build.xml
+---------
+<project name="usingprops" basedir="." default="printvars">
+	<property file="build-qa.properties"/>
+	
+	<target name="printvars">
+		<echo>${build.version}</echo>
+	</target>
+</project>
+(or)
+ant -propertyfile=build.properties
+------------------------------------------------------------------------------------------------------------------------
+#java program using variables
+
+luckynumber
+|-src
+	|-com
+		|-luckynumber
+			|-run
+				|-Main.java
+|-build.properties
+|-build.xml
+
+package com.luckynumber.run;
+public class Main {
+	public static void main(String args[]) {
+		SecureRandom random = new SecureRandom();
+		int lucky = random.nextInt(9);
+		sop(lucky);
+	}
+}
+
+build.properties
+-----------------
+build.dir=build
+classes.dir=${build.dir}${file.separator}classes
+dist.dir=${build.dir}${file.separator}dist
+src.dir=src
+
+build.xml
+----------
+<?xml version="1.0" encoding="utf-8"?>
+<project name="luckynumber" basedir="." default="init">
+	<property file="build.properties"/>
+	<target name="init" depends="clean,createdirs,compile,package,run"/>
+	<target name="clean">
+		<delete dir="${classes.dir}"/>
+		<delete dir="${dist.dir}"/>
+		<delete dir="${build.dir}"/>
+	</target>
+	<target name="createdirs">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+	</target>
+	<target name="compile">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+	</target>
+	<target name="package">
+		<jar destfile="${dist.dir}${file.separator}${ant.project.name}.jar" basedir="${classes.dir}"/>
+	</target>
+	<target name="run">
+		<java classname="com.luckynumber.run.Main" classpath="${dist.dir}${file.separator}${ant.project.name}.jar"/>
+	</target>
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

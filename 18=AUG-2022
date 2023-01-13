@@ -1,0 +1,205 @@
+Ant variables
+--------------
+variables acts as placeholders in which we can store the values, instead of using the literal values we can refer the variables values in our program/script. So, if there is a change in value we dont need to modify the program/script rather we need to modify the value of the variable
+
+1. How to work with defining variables?
+
+every xml starts with a line called prolog, stands for processing instruction. it acts as processing instruction for the parsers enabling them to understand the xml document has been written with utf-8 charset encoding standard and xml syntax of version=1.0 has been used in writing the document.
+	
+varbuild.xml
+------------
+<?xml version="1.0" encoding="utf-8"?>
+<project name="variablesant" basedir="." default="printvariables">
+	<property name="variableName" value="variableValue"/> <!-- define variable -->
+	<target name="printVariables">
+		<echo>${variableName}</echo> <!-- use variable -->
+	</target>
+</project>
+
+d:\work:/>	
+|-variablesant
+	|-varbuild.xml
+
+d:\work\variablesant:/> ant -f varbuild.xml
+
+
+ANT Supports multiple types of variables
+1. predefined or build-in variables of ANT
+2. SystemProperties of Java
+3. Environment variables
+4. User-defined variables
+
+1. predefined or built-in variables of ANT
+The are the pre-defined variables that are created by the ANT engine and passes them as input during the build execution. within the build script we can use these variables in referring the env/build information of the project.
+There are lot of build-in variables are available in ANT
+1. ant.version
+2. ant.project.name
+3. ant.java.version
+4. basedir
+5. ant.project.default-target
+6. ant.home
+7. ant.core.lib
+8. ant.library.dir
+
+3. System Properties
+SystemProperties are the jvm variables created by the jvm by gathering information from the underlying operating system of the computer. Ant captures these system properties and passes them as variables to the build engine. So within the buildscript we can refer all the SystemProperties of Jdk System Variables in writing the build script
+
+sun.desktop :windows
+awt.toolkit :sun.awt.windows.WToolkit
+java.specification.version :11       
+sun.cpu.isalist :amd64
+sun.jnu.encoding :Cp1252
+java.class.path :C:\Users\Sriman\AppData\Roaming\Code\User\workspaceStorage\29bed76418df49c431aeb410fd17d253\redhat.java\jdt_ws\20220816_f26f5de7\bin
+java.vm.vendor :Oracle Corporation
+sun.arch.data.model :64
+user.variant :
+java.vendor.url :http://java.oracle.com/
+user.timezone :
+os.name :Windows 10
+java.vm.specification.version :11
+sun.java.launcher :SUN_STANDARD
+user.country :US
+sun.boot.library.path :C:\Program Files\Java\jdk-11\bin
+sun.java.command :com.ant.sysprops.SysPropsTest
+jdk.debug :release
+sun.cpu.endian :little
+user.home :C:\Users\Sriman
+user.language :en
+sun.stderr.encoding :cp437
+java.specification.vendor :Oracle Corporation
+java.version.date :2018-09-25
+java.home :C:\Program Files\Java\jdk-11
+file.separator :\
+java.vm.compressedOopsMode :Zero based
+line.separator :
+sun.stdout.encoding :cp437
+java.specification.name :Java Platform API Specification
+java.vm.specification.vendor :Oracle Corporation
+java.awt.graphicsenv :sun.awt.Win32GraphicsEnvironment
+user.script :
+sun.management.compiler :HotSpot 64-Bit Tiered Compilers
+java.runtime.version :11+28
+user.name :Sriman
+path.separator :;
+os.version :10.0
+java.runtime.name :OpenJDK Runtime Environment
+file.encoding :Cp1252
+java.vm.name :OpenJDK 64-Bit Server VM
+java.vendor.version :18.9
+java.vendor.url.bug :http://bugreport.java.com/bugreport/
+java.io.tmpdir :C:\Users\Sriman\AppData\Local\Temp\
+java.version :11
+user.dir :D:\work\master\tools\20220816
+os.arch :amd64
+java.vm.specification.name :Java Virtual Machine Specification
+java.awt.printerjob :sun.awt.windows.WPrinterJob
+sun.os.patch.level :
+java.vendor :Oracle Corporation
+java.vm.info :mixed mode
+java.vm.version :11+28
+sun.io.unicode.encoding :UnicodeLittle
+java.class.version :55.0
+
+4. environment variables
+env variables are defined by the user at the operating system level and are accessible across all the programs that are running on that computer/machine. These environment variables defined at os level can also be accessed within the ANT build script
+
+<?xml version="1.0" encoding="utf-8"?>
+<project name="envvars" basedir="." default="printenv">
+	<property environment="env"/>
+	
+	<echo>${env.JAVA_HOME}</echo>
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

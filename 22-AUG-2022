@@ -1,0 +1,9 @@
+DataTypes
+There are 4 DataTypes in ANT
+1. FileSet = FileSet represents the collection of Files along with their path based on the include/execlude filters
+2. PatternSet = We can create reusable patterns that can be referrenced in other DataTypes or Tasks to perform operation
+3. FileList = Fixed list of files on whom we want to perform operation are represented through FileList
+4. FilterSet 
+
+
+
