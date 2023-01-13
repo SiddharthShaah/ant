@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="mobilecare" basedir="." default="init">
+	<property file="build.properties" />
+	<target name="init" depends="clean,createdirs,compile,package" />
+
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<target name="clean">
+		<delete dir="${classes.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${build.dir}" />
+	</target>
+	<target name="createdirs">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+	<target name="compile">
+		<javac srcdir="${java.dir}" destdir="${classes.dir}" classpathref="build.classpath" />
+	</target>
+	<target name="package">
+		<war destfile="${dist.dir}${file.separator}${ant.project.name}.war" webxml="${webinf.dir}${file.separator}web.xml">
+			<fileset dir="${webapp.dir}">
+				<include name="*.jsp" />
+			</fileset>
+			<lib dir="${lib.dir}">
+				<include name="*.jar" />
+			</lib>
+			<classes dir="${classes.dir}">
+				<include name="**/*.class" />
+			</classes>
+		</war>
+	</target>
+</project>

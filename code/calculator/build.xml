@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="calculator" basedir="." default="execute">
+    <target name="clean">
+        <delete dir="build/classes"/>
+        <delete dir="build/dist"/>
+        <delete dir="build"/>
+    </target>
+    <target name="createdirs" depends="clean">
+        <mkdir dir="build"/>
+        <mkdir dir="build/classes"/>
+        <mkdir dir="build/dist"/>
+    </target>
+    <target name="compile" depends="createdirs">
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+    <target name="execute" depends="compile">
+        <java classname="com.calc.test.CalcTest" classpath="build/classes"/>
+    </target>
+</project>

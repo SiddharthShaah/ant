@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="variablesant" basedir="." default="envvars">
+    <!-- defining variables -->
+    <property name="author" value="Stephen"/>
+    <property name="version" value="1.0" />
+    <property environment="env"/>
+
+    <target name="printvariables">
+        <echo>author: ${author} and version: ${version}</echo>
+    </target>
+
+    <target name="antVariables">
+        <echo>Ant version: ${ant.version}</echo>
+        <echo>Java version: ${ant.java.version}</echo>
+        <echo>Default Target: ${ant.project.default-target}</echo>
+        <echo>Ant Home: ${ant.home}</echo>
+        <echo>Project directory location: ${basedir}</echo>
+        <echo>Ant Core Library: ${ant.core.lib}</echo>
+        <echo>Ant library: ${ant.library.dir}</echo>
+        <echo>Project Name: ${ant.project.name}</echo>
+    </target>
+
+    <target name="printsysprops">
+        <echo>java version: ${java.version}</echo>
+        <echo>os name: ${os.name}</echo>
+        <echo>user : ${user.name}</echo>
+    </target>
+
+    <target name="envvars">
+        <echo>JAVA_HOME: ${env.JAVA_HOME}</echo>
+        <echo>PATH: ${env.Path}</echo>
+    </target>
+</project>
